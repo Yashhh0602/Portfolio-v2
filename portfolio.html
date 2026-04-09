@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yashvardhan Khanduja — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f9f8f5;
+  --border: #e4e2dc;
+  --text: #1a1917;
+  --muted: #6b6960;
+  --accent-light: #f0ede6;
+  --tag-bg: #ededea;
+  --tag-text: #3d3c38;
+  --font: 'Sora', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --cv: 26,25,23;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111110;
+    --border: #2e2d29;
+    --text: #f0ede6;
+    --muted: #8a8880;
+    --accent-light: #22211f;
+    --tag-bg: #22211f;
+    --tag-text: #c4c1b8;
+    --cv: 240,237,230;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+section:last-child { border-bottom: none; }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+#hero { padding-top: 140px; padding-bottom: 80px; }
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+}
+
+.hero-name {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.hero-tagline {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 2.2rem;
+}
+
+.hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.18s;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font);
+}
+.btn-primary { background: var(--text); color: var(--bg); }
+.btn-primary:hover { opacity: 0.85; }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { background: var(--accent-light); }
+
+.about-text { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; }
+.about-text strong { color: var(--text); font-weight: 500; }
+
+.exp-item { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+.exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.3rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exp-role { font-weight: 600; font-size: 1rem; color: var(--text); }
+.exp-date { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap; }
+.exp-company { font-size: 13px; color: var(--muted); margin-bottom: 1rem; }
+
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.exp-bullets li { font-size: 14px; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.65; }
+.exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--border); }
+
+.project-item { margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+.project-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.project-name { font-weight: 600; font-size: 0.95rem; color: var(--text); margin-bottom: 0.4rem; display: block; }
+.project-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 0.8rem; }
+
+.project-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.9rem; }
+.project-bullets li { font-size: 14px; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.65; }
+.project-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--border); }
+
+.project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 3px 9px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.skills-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+.skill-row { display: grid; grid-template-columns: 160px 1fr; gap: 1rem; align-items: flex-start; }
+.skill-category { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; padding-top: 3px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.ach-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.ach-list li { font-size: 14px; color: var(--muted); padding-left: 1.5rem; position: relative; line-height: 1.65; }
+.ach-list li::before { content: '★'; position: absolute; left: 0; font-size: 10px; color: var(--muted); top: 4px; }
+.ach-list li strong { color: var(--text); font-weight: 500; }
+
+.contact-block { display: flex; flex-direction: column; gap: 0.8rem; }
+.contact-line { display: flex; align-items: center; gap: 1rem; }
+.contact-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; min-width: 72px; }
+.contact-value { font-size: 14px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); transition: border-color 0.18s; }
+.contact-value:hover { border-color: var(--text); }
+
+footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.04em; position: relative; z-index: 1; }
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 600px) {
+  nav { padding: 0 1.2rem; }
+  .nav-links { gap: 1.2rem; }
+  .container { padding: 0 1.2rem; }
+  .skill-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .hero-name { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a class="nav-logo" href="#hero">YK</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow reveal">B.Tech CSE — Manipal Institute of Technology, Bengaluru</p>
+    <h1 class="hero-name reveal">Yashvardhan<br>Khanduja</h1>
+    <p class="hero-tagline reveal">
+      Software engineer with a focus on distributed systems, Web3, and applied ML.
+      Currently interning at DRDO building GPU-accelerated quantum simulation pipelines.
+    </p>
+    <div class="hero-links reveal">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-outline" href="https://github.com/Yashhh0602" target="_blank">GitHub</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/yashvardhan-khanduja07" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <p class="about-text reveal">I'm a final-year Computer Science student at MIT Bengaluru graduating in July 2025. I build things across the stack — from <strong>distributed backend systems</strong> and <strong>real-time data pipelines</strong> to <strong>Web3 DeFi applications</strong> and <strong>GPU-accelerated compute environments</strong>.</p>
+    <p class="about-text reveal">My work spans cybersecurity, quantum computing simulation, MEV bots on Ethereum, and computer vision — I enjoy the intersection of low-level engineering and high-impact product thinking.</p>
+    <p class="about-text reveal">Outside of code, I'm the Vice Captain of my university football team and a competitive cryptography puzzle solver.</p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <div class="exp-item reveal">
+      <div class="exp-header">
+        <span class="exp-role">Quantum & Systems Engineer Intern</span>
+        <span class="exp-date">Apr 2025 – Sep 2025</span>
+      </div>
+      <p class="exp-company">DRDO, Ministry of Defence — Delhi</p>
+      <ul class="exp-bullets">
+        <li>Engineered GPU-accelerated quantum simulation pipelines using CUDA-Q, executing 8–12 qubit circuits across multi-GPU architectures, improving computational efficiency by 40%.</li>
+        <li>Containerized compute environments using Docker, standardizing dependency management and enabling reproducible deployments across 12+ heterogeneous systems.</li>
+        <li>Designed distributed Python workflows handling 500+ parallel executions, improving throughput and reducing latency by 35%.</li>
+        <li>Applied modular design principles to simulation workflows, improving maintainability and scalability of compute pipelines.</li>
+      </ul>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-header">
+        <span class="exp-role">Cybersecurity Intern</span>
+        <span class="exp-date">Apr 2024 – Aug 2024</span>
+      </div>
+      <p class="exp-company">Academor — Remote</p>
+      <ul class="exp-bullets">
+        <li>Built network traffic analysis pipelines using Python (Scapy, Pandas) and Wireshark, processing 2M+ packets/session for anomaly detection and threat analysis.</li>
+        <li>Automated OWASP-aligned vulnerability scanning across 20+ applications, identifying 35+ critical issues and generating structured remediation reports.</li>
+        <li>Developed structured data pipelines and dashboards using Power BI for monitoring system behavior and security insights.</li>
+        <li>Implemented logging and structured output generation for debugging and traceability of scanning workflows.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <div class="project-item reveal">
+      <span class="project-name">NoFeeSwap MEV Suite</span>
+      <p class="project-desc">Full-stack Web3 DeFi application on the NoFeeSwap DEX protocol with on-chain pool initialization, liquidity management, and MEV sandwich attack tooling.</p>
+      <ul class="project-bullets">
+        <li>Architected a Next.js frontend using wagmi/viem for wallet connection and real-time on-chain interactions against a local Anvil blockchain.</li>
+        <li>Developed a TypeScript MEV sandwich attack bot monitoring the Ethereum mempool, executing front-run and back-run bundles with precise nonce and gas price ordering.</li>
+        <li>Implemented mempool subscription via WebSocket providers, parsing pending transaction calldata to identify profitable sandwich opportunities.</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Solidity</span><span class="tag">TypeScript</span><span class="tag">Next.js</span>
+        <span class="tag">wagmi</span><span class="tag">viem</span><span class="tag">ethers.js</span>
+        <span class="tag">Foundry</span><span class="tag">Anvil</span>
+      </div>
+    </div>
+    <div class="project-item reveal">
+      <span class="project-name">Distributed Real-Time Messaging Platform</span>
+      <p class="project-desc">Scalable backend system supporting 100+ concurrent users with low-latency real-time communication, analytics, and role-based access control.</p>
+      <ul class="project-bullets">
+        <li>Designed REST APIs and WebSocket communication achieving sub-100ms latency for 100+ concurrent users.</li>
+        <li>Implemented JWT-based authentication and role-based access control for secure communication channels.</li>
+        <li>Optimized database performance using indexing and connection pooling, achieving 99.9% uptime.</li>
+        <li>Built asynchronous data pipelines using Apache Spark to process engagement data and generate analytics dashboards.</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span>
+        <span class="tag">Socket.IO</span><span class="tag">Apache Spark</span><span class="tag">JWT</span>
+      </div>
+    </div>
+    <div class="project-item reveal">
+      <span class="project-name">Autonomous Traffic Monitoring Dashboard</span>
+      <p class="project-desc">Real-time object detection and tracking system achieving 95% accuracy across multi-object traffic scenarios with live KPI generation.</p>
+      <ul class="project-bullets">
+        <li>Built detection pipeline using YOLOv8 + DeepSort achieving 95% accuracy across multi-object scenarios.</li>
+        <li>Processed 10,000+ frames and generated KPIs such as vehicle density and directional flow.</li>
+        <li>Developed data processing pipelines for real-time monitoring and forecasting insights.</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">YOLOv8</span><span class="tag">DeepSort</span><span class="tag">OpenCV</span><span class="tag">Python</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid reveal">
+      <div class="skill-row">
+        <span class="skill-category">Languages</span>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">Java</span><span class="tag">C++</span>
+          <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Solidity</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-category">Backend</span>
+        <div class="skill-tags">
+          <span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">FastAPI</span>
+          <span class="tag">Django</span><span class="tag">Flask</span><span class="tag">REST APIs</span>
+          <span class="tag">GraphQL</span><span class="tag">WebSockets</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-category">Frontend</span>
+        <div class="skill-tags">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">HTML</span><span class="tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-category">Web3</span>
+        <div class="skill-tags">
+          <span class="tag">ethers.js</span><span class="tag">viem</span><span class="tag">wagmi</span>
+          <span class="tag">Hardhat</span><span class="tag">Foundry</span><span class="tag">MEV strategies</span>
+          <span class="tag">EVM internals</span><span class="tag">DeFi protocols</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-category">Databases</span>
+        <div class="skill-tags">
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-category">Cloud & DevOps</span>
+        <div class="skill-tags">
+          <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Azure</span>
+          <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">CI/CD</span>
+          <span class="tag">GitHub Actions</span><span class="tag">CUDA-Q</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-category">Data & ML</span>
+        <div class="skill-tags">
+          <span class="tag">Apache Spark</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+          <span class="tag">Power BI</span><span class="tag">OpenCV</span><span class="tag">YOLOv8</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-category">Cybersecurity</span>
+        <div class="skill-tags">
+          <span class="tag">Wireshark</span><span class="tag">Scapy</span><span class="tag">Kali Linux</span>
+          <span class="tag">OWASP</span><span class="tag">Snort</span><span class="tag">Metasploit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="container">
+    <p class="section-label">Achievements</p>
+    <ul class="ach-list reveal">
+      <li><strong>1st place</strong> among 120 participants in university Crypto Hunt — solved multi-stage cryptographic challenges.</li>
+      <li><strong>8th place</strong> among 45 teams in M# Hackathon — built a real-time ML-based system under competition conditions.</li>
+      <li><strong>Vice Captain</strong>, University Football Team — led team to first tournament win.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <div class="contact-block reveal">
+      <div class="contact-line">
+        <span class="contact-label">Email</span>
+        <a class="contact-value" href="mailto:vardhan.yash265@gmail.com">vardhan.yash265@gmail.com</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">Phone</span>
+        <a class="contact-value" href="tel:+916230680703">+91 6230680703</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">GitHub</span>
+        <a class="contact-value" href="https://github.com/Yashhh0602" target="_blank">github.com/Yashhh0602</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">LinkedIn</span>
+        <a class="contact-value" href="https://www.linkedin.com/in/yashvardhan-khanduja07" target="_blank">yashvardhan-khanduja07</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><span>Yashvardhan Khanduja &nbsp;·&nbsp; 2025</span></footer>
+
+<script>
+// ── Reveal ────────────────────────────────────────────────────────
+document.querySelectorAll('.reveal').forEach((el, _, all) => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 55);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 }).observe(el);
+});
+
+// ── Nav active ────────────────────────────────────────────────────
+const sections = [...document.querySelectorAll('section[id]')];
+const navAs = [...document.querySelectorAll('.nav-links a')];
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' }).observe.call(
+  new IntersectionObserver(() => {}),
+  ...sections
+);
+
+// rebuild properly
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => secObs.observe(s));
+
+navAs.forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+}));
+
+// ── Canvas BG ─────────────────────────────────────────────────────
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W = 0, H = 0;
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+// detect dominant section
+function dominantSection() {
+  const vh = window.innerHeight;
+  let best = 'hero', bestV = 0;
+  sections.forEach(s => {
+    const r = s.getBoundingClientRect();
+    const v = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+    if (v > bestV) { bestV = v; best = s.id; }
+  });
+  return best;
+}
+
+// color string from CSS var
+const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const cv = isDark ? '240,237,230' : '26,25,23';
+
+// ── Scene objects ─────────────────────────────────────────────────
+
+// HERO: slow floating dust
+const motes = Array.from({ length: 40 }, () => ({
+  x: Math.random(), y: Math.random(),
+  r: Math.random() * 1.3 + 0.4,
+  vx: (Math.random() - 0.5) * 0.00008,
+  vy: (Math.random() - 0.5) * 0.00008,
+  ph: Math.random() * Math.PI * 2
+}));
+
+function drawHero(a, t) {
+  motes.forEach(m => {
+    m.x = (m.x + m.vx + 1) % 1;
+    m.y = (m.y + m.vy + 1) % 1;
+    const p = 0.6 + 0.4 * Math.sin(t * 0.0009 + m.ph);
+    ctx.beginPath();
+    ctx.arc(m.x * W, m.y * H, m.r * p, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cv},${a * 0.45 * p})`;
+    ctx.fill();
+  });
+}
+
+// ABOUT: expanding concentric rings from right side
+function drawAbout(a, t) {
+  const cx = W * 0.8, cy = H * 0.4;
+  for (let i = 0; i < 7; i++) {
+    const prog = ((t * 0.00022 * (1 + i * 0.12) + i * 0.155) % 1);
+    const r = prog * 320 + 10;
+    const fade = a * 0.16 * (1 - prog);
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(${cv},${Math.max(0, fade)})`;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+}
+
+// EXPERIENCE: quantum orbitals with electron dots
+const orbs = [
+  { rx: 140, ry: 52, rot: 0.3, spd: 0.00016, cx: 0.75, cy: 0.36 },
+  { rx: 210, ry: 75, rot: 1.0, spd: 0.00011, cx: 0.75, cy: 0.36 },
+  { rx: 85,  ry: 32, rot: 1.9, spd: 0.00024, cx: 0.75, cy: 0.36 },
+  { rx: 160, ry: 40, rot: 0.7, spd: 0.00014, cx: 0.75, cy: 0.36 },
+];
+function drawExperience(a, t) {
+  const fa = a * 0.12;
+  orbs.forEach(o => {
+    const angle = o.rot + t * o.spd;
+    ctx.save();
+    ctx.translate(o.cx * W, o.cy * H);
+    ctx.rotate(angle);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, o.rx, o.ry, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(${cv},${fa})`;
+    ctx.lineWidth = 0.7;
+    ctx.stroke();
+    // electron
+    const ex = o.rx * Math.cos(t * o.spd * 4.5);
+    const ey = o.ry * Math.sin(t * o.spd * 4.5);
+    ctx.beginPath();
+    ctx.arc(ex, ey, 2.2, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cv},${fa * 2.8})`;
+    ctx.fill();
+    ctx.restore();
+  });
+  // nucleus
+  ctx.beginPath();
+  ctx.arc(orbs[0].cx * W, orbs[0].cy * H, 4, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(${cv},${fa * 2})`;
+  ctx.fill();
+}
+
+// PROJECTS: floating network graph with packet signals
+const nodes = Array.from({ length: 16 }, () => ({
+  x: Math.random(), y: Math.random(),
+  vx: (Math.random() - 0.5) * 0.00012,
+  vy: (Math.random() - 0.5) * 0.00012,
+  ph: Math.random() * Math.PI * 2
+}));
+const edges = [];
+for (let i = 0; i < nodes.length; i++)
+  for (let j = i + 1; j < nodes.length; j++) {
+    const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+    if (Math.sqrt(dx * dx + dy * dy) < 0.28 && Math.random() < 0.35) edges.push([i, j]);
+  }
+const packets = edges.map(e => ({ e, t: Math.random(), spd: 0.00035 + Math.random() * 0.0005 }));
+
+function drawProjects(a, t) {
+  nodes.forEach(n => {
+    n.x = (n.x + n.vx + 1) % 1;
+    n.y = (n.y + n.vy + 1) % 1;
+  });
+  edges.forEach(([i, j]) => {
+    ctx.beginPath();
+    ctx.moveTo(nodes[i].x * W, nodes[i].y * H);
+    ctx.lineTo(nodes[j].x * W, nodes[j].y * H);
+    ctx.strokeStyle = `rgba(${cv},${a * 0.07})`;
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  });
+  packets.forEach(p => {
+    p.t = (p.t + p.spd) % 1;
+    const [i, j] = p.e;
+    const px = (nodes[i].x + (nodes[j].x - nodes[i].x) * p.t) * W;
+    const py = (nodes[i].y + (nodes[j].y - nodes[i].y) * p.t) * H;
+    ctx.beginPath();
+    ctx.arc(px, py, 1.8, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cv},${a * 0.32})`;
+    ctx.fill();
+  });
+  nodes.forEach(n => {
+    const p = 0.7 + 0.3 * Math.sin(t * 0.001 + n.ph);
+    ctx.beginPath();
+    ctx.arc(n.x * W, n.y * H, 2 * p, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cv},${a * 0.18 * p})`;
+    ctx.fill();
+  });
+}
+
+// SKILLS: circuit board traces with flowing signals
+const traces = Array.from({ length: 11 }, (_, i) => {
+  const y = (i / 10) * 0.84 + 0.08;
+  const segs = [];
+  let x = Math.random() * 0.08 + 0.01;
+  while (x < 0.97) {
+    const len = Math.random() * 0.1 + 0.04;
+    segs.push({ x1: x, x2: Math.min(x + len, 0.97), dot: Math.random() < 0.28 });
+    x += len + Math.random() * 0.02 + 0.005;
+  }
+  return { y, segs, ph: Math.random() * Math.PI * 2 };
+});
+const sigs = traces.map((_, i) => ({ ti: i, pos: Math.random(), spd: 0.00018 + Math.random() * 0.00022 }));
+
+function drawSkills(a, t) {
+  traces.forEach((tr) => {
+    const p = 0.7 + 0.3 * Math.sin(t * 0.0005 + tr.ph);
+    tr.segs.forEach(seg => {
+      ctx.beginPath();
+      ctx.moveTo(seg.x1 * W, tr.y * H);
+      ctx.lineTo(seg.x2 * W, tr.y * H);
+      ctx.strokeStyle = `rgba(${cv},${a * 0.12 * p})`;
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+      if (seg.dot) {
+        ctx.beginPath();
+        ctx.arc(seg.x2 * W, tr.y * H, 2.4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${cv},${a * 0.22 * p})`;
+        ctx.fill();
+      }
+    });
+  });
+  sigs.forEach(sig => {
+    sig.pos = (sig.pos + sig.spd) % 1;
+    const tr = traces[sig.ti];
+    const total = tr.segs.reduce((s, seg) => s + seg.x2 - seg.x1, 0);
+    let target = sig.pos * total, acc = 0, sx = tr.segs[0].x1;
+    for (const seg of tr.segs) {
+      const len = seg.x2 - seg.x1;
+      if (acc + len >= target) { sx = seg.x1 + (target - acc); break; }
+      acc += len;
+    }
+    ctx.beginPath();
+    ctx.arc(sx * W, tr.y * H, 2.2, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cv},${a * 0.38})`;
+    ctx.fill();
+  });
+}
+
+// ACHIEVEMENTS: star constellation
+const stars = Array.from({ length: 30 }, () => ({
+  x: Math.random(), y: Math.random(),
+  r: Math.random() * 1.1 + 0.4,
+  ph: Math.random() * Math.PI * 2
+}));
+const cEdges = [];
+for (let i = 0; i < stars.length; i++)
+  for (let j = i + 1; j < stars.length; j++) {
+    const dx = stars[i].x - stars[j].x, dy = stars[i].y - stars[j].y;
+    if (Math.sqrt(dx * dx + dy * dy) < 0.17 && Math.random() < 0.42) cEdges.push([i, j]);
+  }
+
+function drawAchievements(a, t) {
+  cEdges.forEach(([i, j]) => {
+    ctx.beginPath();
+    ctx.moveTo(stars[i].x * W, stars[i].y * H);
+    ctx.lineTo(stars[j].x * W, stars[j].y * H);
+    ctx.strokeStyle = `rgba(${cv},${a * 0.07})`;
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  });
+  stars.forEach(s => {
+    const p = 0.5 + 0.5 * Math.sin(t * 0.0007 + s.ph);
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r * p, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cv},${a * 0.22 * p})`;
+    ctx.fill();
+  });
+}
+
+// CONTACT: slow diagonal hatching
+function drawContact(a, t) {
+  const sp = 72, off = (t * 0.01) % sp;
+  ctx.lineWidth = 0.5;
+  for (let x = -sp + off; x < W + sp; x += sp) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x + H * 0.14, H);
+    ctx.strokeStyle = `rgba(${cv},${a * 0.07})`; ctx.stroke();
+  }
+  for (let x = -sp - off; x < W + sp; x += sp) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x - H * 0.14, H);
+    ctx.strokeStyle = `rgba(${cv},${a * 0.07})`; ctx.stroke();
+  }
+}
+
+// ── Blend alphas & render ─────────────────────────────────────────
+const sceneIds = ['hero','about','experience','projects','skills','achievements','contact'];
+const cur = Object.fromEntries(sceneIds.map(k => [k, k === 'hero' ? 1 : 0]));
+const tgt = Object.fromEntries(sceneIds.map(k => [k, k === 'hero' ? 1 : 0]));
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+const drawers = {
+  hero: drawHero,
+  about: drawAbout,
+  experience: drawExperience,
+  projects: drawProjects,
+  skills: drawSkills,
+  achievements: drawAchievements,
+  contact: drawContact
+};
+
+function frame(ts) {
+  ctx.clearRect(0, 0, W, H);
+  const active = dominantSection();
+  sceneIds.forEach(k => tgt[k] = k === active ? 1 : 0);
+  sceneIds.forEach(k => {
+    cur[k] = lerp(cur[k], tgt[k], 0.016);
+    if (cur[k] > 0.005) drawers[k](cur[k], ts);
+  });
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
