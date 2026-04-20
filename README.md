@@ -1,7 +1,7 @@
 # Hi, I'm Yashvardhan 👋
 **Software Engineer** focused on distributed systems, GenAI, Web3, and applied ML.  
 Ex intern at **DRDO, Ministry of Defence** building GPU-accelerated quantum simulation pipelines.  
-Final year B.Tech CSE @ **Manipal Institute of Technology, Bengaluru** (2025).
+Graduate B.Tech CSE @ **Manipal Institute of Technology, Bengaluru** (2025).
 
 ---
 
