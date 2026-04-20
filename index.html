@@ -317,6 +317,26 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
 <section id="projects">
   <div class="container">
     <p class="section-label">Projects</p>
+
+    <div class="project-item reveal">
+      <span class="project-name">AI Dungeon Master</span>
+      <p class="project-desc">A full-stack AI-powered RPG where a locally-hosted LLM acts as a real-time Dungeon Master, generating dynamic narratives, tracking character stats, and managing game state across sessions.</p>
+      <ul class="project-bullets">
+        <li>Built a FastAPI backend with SQLite persistence for managing character stats, inventory, XP, combat state, and story history across game sessions.</li>
+        <li>Engineered a custom prompt system instructing the LLM to narrate in D&D style and return structured state deltas in a parseable STATE block format.</li>
+        <li>Developed a React + TypeScript frontend with a real-time chat interface, animated HP/XP bars, character sheet sidebar, and combat panel.</li>
+        <li>Integrated Ollama to run qwen2.5 entirely locally — zero API costs, full privacy, no cloud dependency.</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span>
+        <span class="tag">TypeScript</span><span class="tag">Ollama</span><span class="tag">qwen2.5</span>
+        <span class="tag">SQLite</span><span class="tag">GenAI</span>
+      </div>
+      <div style="margin-top: 0.8rem;">
+        <a href="https://github.com/Yashhh0602/AI-Dungeon-Master" target="_blank" class="btn btn-outline" style="font-size:12px; padding: 6px 14px;">GitHub →</a>
+      </div>
+    </div>
+
     <div class="project-item reveal">
       <span class="project-name">NoFeeSwap MEV Suite</span>
       <p class="project-desc">Full-stack Web3 DeFi application on the NoFeeSwap DEX protocol with on-chain pool initialization, liquidity management, and MEV sandwich attack tooling.</p>
@@ -331,6 +351,7 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
         <span class="tag">Foundry</span><span class="tag">Anvil</span>
       </div>
     </div>
+
     <div class="project-item reveal">
       <span class="project-name">Distributed Real-Time Messaging Platform</span>
       <p class="project-desc">Scalable backend system supporting 100+ concurrent users with low-latency real-time communication, analytics, and role-based access control.</p>
@@ -345,6 +366,7 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
         <span class="tag">Socket.IO</span><span class="tag">Apache Spark</span><span class="tag">JWT</span>
       </div>
     </div>
+
     <div class="project-item reveal">
       <span class="project-name">Autonomous Traffic Monitoring Dashboard</span>
       <p class="project-desc">Real-time object detection and tracking system achieving 95% accuracy across multi-object traffic scenarios with live KPI generation.</p>
@@ -357,6 +379,7 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
         <span class="tag">YOLOv8</span><span class="tag">DeepSort</span><span class="tag">OpenCV</span><span class="tag">Python</span>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -412,6 +435,10 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
         <div class="skill-tags">
           <span class="tag">Apache Spark</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
           <span class="tag">Power BI</span><span class="tag">OpenCV</span><span class="tag">YOLOv8</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">LLM Integration</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">GenAI</span>
         </div>
       </div>
       <div class="skill-row">
