@@ -338,6 +338,25 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
     </div>
 
     <div class="project-item reveal">
+      <span class="project-name">MindVault</span>
+      <p class="project-desc">AI-powered personal knowledge base with semantic search, on-device LLM summarization, and auto-tagging — fully containerized with Docker and running without any external API dependencies.</p>
+      <ul class="project-bullets">
+        <li>Architected a full-stack system with a FastAPI backend and Next.js frontend across 5 Docker services, using pgvector for vector similarity search and semantic note retrieval.</li>
+        <li>Integrated Ollama (llama3.2 + nomic-embed-text) for on-device AI features including note summarization, auto-tagging, and embedding generation — no cloud API required.</li>
+        <li>Implemented async SQLAlchemy with isolated background task sessions to handle concurrent AI workloads without blocking request lifecycles.</li>
+        <li>Built a TipTap rich text editor with real-time auto-save, tag management, and AI summary display in a clean Next.js 14 frontend.</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Next.js</span>
+        <span class="tag">PostgreSQL</span><span class="tag">pgvector</span><span class="tag">Redis</span>
+        <span class="tag">Docker</span><span class="tag">Ollama</span><span class="tag">SQLAlchemy</span>
+      </div>
+      <div style="margin-top: 0.8rem;">
+        <a href="https://github.com/Yashhh0602/Minvault-AI" target="_blank" class="btn btn-outline" style="font-size:12px; padding: 6px 14px;">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-item reveal">
       <span class="project-name">NoFeeSwap MEV Suite</span>
       <p class="project-desc">Full-stack Web3 DeFi application on the NoFeeSwap DEX protocol with on-chain pool initialization, liquidity management, and MEV sandwich attack tooling.</p>
       <ul class="project-bullets">
@@ -419,7 +438,8 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
       <div class="skill-row">
         <span class="skill-category">Databases</span>
         <div class="skill-tags">
-          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span>
+          <span class="tag">PostgreSQL</span><span class="tag">pgvector</span><span class="tag">MySQL</span>
+          <span class="tag">MongoDB</span><span class="tag">Redis</span>
         </div>
       </div>
       <div class="skill-row">
@@ -435,10 +455,8 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
         <div class="skill-tags">
           <span class="tag">Apache Spark</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
           <span class="tag">Power BI</span><span class="tag">OpenCV</span><span class="tag">YOLOv8</span>
-          <span class="tag">Ollama</span>
-          <span class="tag">LLM Integration</span>
-          <span class="tag">Prompt Engineering</span>
-          <span class="tag">GenAI</span>
+          <span class="tag">Ollama</span><span class="tag">LLM Integration</span>
+          <span class="tag">Prompt Engineering</span><span class="tag">GenAI</span>
         </div>
       </div>
       <div class="skill-row">
@@ -505,20 +523,6 @@ document.querySelectorAll('.reveal').forEach((el, _, all) => {
 // ── Nav active ────────────────────────────────────────────────────
 const sections = [...document.querySelectorAll('section[id]')];
 const navAs = [...document.querySelectorAll('.nav-links a')];
-new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navAs.forEach(a => a.classList.remove('active'));
-      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-      if (a) a.classList.add('active');
-    }
-  });
-}, { rootMargin: '-40% 0px -55% 0px' }).observe.call(
-  new IntersectionObserver(() => {}),
-  ...sections
-);
-
-// rebuild properly
 const secObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -544,7 +548,6 @@ function resize() { W = canvas.width = window.innerWidth; H = canvas.height = wi
 resize();
 window.addEventListener('resize', resize);
 
-// detect dominant section
 function dominantSection() {
   const vh = window.innerHeight;
   let best = 'hero', bestV = 0;
@@ -556,13 +559,9 @@ function dominantSection() {
   return best;
 }
 
-// color string from CSS var
 const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const cv = isDark ? '240,237,230' : '26,25,23';
 
-// ── Scene objects ─────────────────────────────────────────────────
-
-// HERO: slow floating dust
 const motes = Array.from({ length: 40 }, () => ({
   x: Math.random(), y: Math.random(),
   r: Math.random() * 1.3 + 0.4,
@@ -583,7 +582,6 @@ function drawHero(a, t) {
   });
 }
 
-// ABOUT: expanding concentric rings from right side
 function drawAbout(a, t) {
   const cx = W * 0.8, cy = H * 0.4;
   for (let i = 0; i < 7; i++) {
@@ -598,7 +596,6 @@ function drawAbout(a, t) {
   }
 }
 
-// EXPERIENCE: quantum orbitals with electron dots
 const orbs = [
   { rx: 140, ry: 52, rot: 0.3, spd: 0.00016, cx: 0.75, cy: 0.36 },
   { rx: 210, ry: 75, rot: 1.0, spd: 0.00011, cx: 0.75, cy: 0.36 },
@@ -617,7 +614,6 @@ function drawExperience(a, t) {
     ctx.strokeStyle = `rgba(${cv},${fa})`;
     ctx.lineWidth = 0.7;
     ctx.stroke();
-    // electron
     const ex = o.rx * Math.cos(t * o.spd * 4.5);
     const ey = o.ry * Math.sin(t * o.spd * 4.5);
     ctx.beginPath();
@@ -626,14 +622,12 @@ function drawExperience(a, t) {
     ctx.fill();
     ctx.restore();
   });
-  // nucleus
   ctx.beginPath();
   ctx.arc(orbs[0].cx * W, orbs[0].cy * H, 4, 0, Math.PI * 2);
-  ctx.fillStyle = `rgba(${cv},${fa * 2})`;
+  ctx.fillStyle = `rgba(${cv},${0.12 * 2})`;
   ctx.fill();
 }
 
-// PROJECTS: floating network graph with packet signals
 const nodes = Array.from({ length: 16 }, () => ({
   x: Math.random(), y: Math.random(),
   vx: (Math.random() - 0.5) * 0.00012,
@@ -680,7 +674,6 @@ function drawProjects(a, t) {
   });
 }
 
-// SKILLS: circuit board traces with flowing signals
 const traces = Array.from({ length: 11 }, (_, i) => {
   const y = (i / 10) * 0.84 + 0.08;
   const segs = [];
@@ -729,7 +722,6 @@ function drawSkills(a, t) {
   });
 }
 
-// ACHIEVEMENTS: star constellation
 const stars = Array.from({ length: 30 }, () => ({
   x: Math.random(), y: Math.random(),
   r: Math.random() * 1.1 + 0.4,
@@ -760,7 +752,6 @@ function drawAchievements(a, t) {
   });
 }
 
-// CONTACT: slow diagonal hatching
 function drawContact(a, t) {
   const sp = 72, off = (t * 0.01) % sp;
   ctx.lineWidth = 0.5;
@@ -774,7 +765,6 @@ function drawContact(a, t) {
   }
 }
 
-// ── Blend alphas & render ─────────────────────────────────────────
 const sceneIds = ['hero','about','experience','projects','skills','achievements','contact'];
 const cur = Object.fromEntries(sceneIds.map(k => [k, k === 'hero' ? 1 : 0]));
 const tgt = Object.fromEntries(sceneIds.map(k => [k, k === 'hero' ? 1 : 0]));
