@@ -372,21 +372,21 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
     </div>
 
      <div class="project-item reveal">
-      <span class="project-name">Mini-Lms Portal</span>
+      <span class="project-name">Mini-Lms</span>
       <p class="project-desc">A full-stack Learning Management System built with the MERN stack. Users can browse video modules, track completion progress, and resume videos from where they left off.</p>
       <ul class="project-bullets">
-        <li>Built a FastAPI backend with SQLite persistence for managing character stats, inventory, XP, combat state, and story history across game sessions.</li>
-        <li>Engineered a custom prompt system instructing the LLM to narrate in D&D style and return structured state deltas in a parseable STATE block format.</li>
-        <li>Developed a React + TypeScript frontend with a real-time chat interface, animated HP/XP bars, character sheet sidebar, and combat panel.</li>
-        <li>Integrated Ollama to run qwen2.5 entirely locally — zero API costs, full privacy, no cloud dependency.</li>
+        <li>Optimistic UI with rollback — UI updates instantly on "Mark as Complete", reverts silently if API fails. No loading spinners, smooth UX.</li>
+        <li>Video resume state — exact timestamp saved on pause, restored when you revisit the module. Both bonus features implemented.</li>
+        <li>Clean separation of concerns — controllers, routes, models all separate. Context API for shared state, 3 MongoDB collections with proper relationships.</li>
       </ul>
       <div class="project-stack">
-        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span>
-        <span class="tag">TypeScript</span><span class="tag">Ollama</span><span class="tag">qwen2.5</span>
-        <span class="tag">SQLite</span><span class="tag">GenAI</span>
+        <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Axios</span><span class="tag">Context API</span>
+        <span class="tag">Node.js</span><span class="tag">Express.js</span>
+        <span class="tag">MongoDB Atlas</span><span class="tag">Mongoose</span>
+        <span class="tag">Docker</span><span class="tag">Docker Compose</span><span class="tag">Render(backend)</span><span class="tag">Vercel(frontend)</span>
       </div>
       <div style="margin-top: 0.8rem;">
-        <a href="https://github.com/Yashhh0602/AI-Dungeon-Master" target="_blank" class="btn btn-outline" style="font-size:12px; padding: 6px 14px;">GitHub →</a>
+        <a href="https://github.com/Yashhh0602/mini-lms" target="_blank" class="btn btn-outline" style="font-size:12px; padding: 6px 14px;">GitHub →</a>
       </div>
     </div>
 
