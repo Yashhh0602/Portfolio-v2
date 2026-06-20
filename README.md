@@ -16,7 +16,7 @@ Graduate B.Tech CSE @ **Manipal Institute of Technology, Bengaluru** (2025).
 ## 🛠️ Tech Stack
 
 **Languages**
-`Python` `Java` `C++` `JavaScript` `TypeScript` `Solidity`
+`Python` `Java` `C++` `JavaScript` `TypeScript` 
 
 **AI & ML**
 `Ollama` `LLM Integration` `Prompt Engineering` `GenAI` `RAG` `Apache Spark` `Pandas` `NumPy` `OpenCV` `YOLOv8` `Power BI`
