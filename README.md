@@ -6,9 +6,9 @@ Graduate B.Tech CSE @ **Manipal Institute of Technology, Bengaluru** (2025).
 ---
 
 ## 🔭 What I'm working on
-- **AI-powered full-stack apps** — building LLM-driven products with local inference, prompt engineering, and real-time state management
+- **Agentic AI apps** — building LLM-driven products with tool use, prompt engineering, and real-time state management
+- **AI-powered full-stack tools** — integrating Claude and local LLMs into production-ready web apps
 - GPU-accelerated quantum circuit simulation using **CUDA-Q** across multi-GPU architectures
-- **MEV bots** and DeFi tooling on Ethereum — mempool monitoring, sandwich attack strategies
 - Distributed Python workflows and containerized compute environments with **Docker**
 
 ---
@@ -51,6 +51,10 @@ A full-stack AI-powered RPG where a locally-hosted LLM acts as a real-time Dunge
 Full-stack Web3 DeFi application on the NoFeeSwap DEX protocol. Built a TypeScript MEV sandwich attack bot monitoring the Ethereum mempool — parsing pending calldata, executing front-run and back-run bundles with precise nonce and gas ordering.  
 `Solidity` `TypeScript` `Next.js` `wagmi` `viem` `Foundry` `Anvil`
 
+### [BurnTrack](https://burntrack-phi.vercel.app) ← *AI / Full-Stack*
+Workout calorie calculator using real MET-based science with a Claude AI coaching tip personalised to your exact exercise, weight, and duration. Built with Next.js 14, Tailwind CSS, and Claude Sonnet 4.6 via a secure server-side API route. Deployed live on Vercel.  
+`Next.js` `Tailwind CSS` `Claude AI` `Vercel` `JavaScript`
+
 ### [Distributed Real-Time Messaging Platform](https://github.com/Yashhh0602) ← *Systems*
 Scalable backend supporting 100+ concurrent users at sub-100ms latency. JWT auth, role-based access control, Apache Spark analytics pipelines, 99.9% uptime.  
 `Node.js` `Express` `MongoDB` `Socket.IO` `Apache Spark`
@@ -63,7 +67,7 @@ Real-time object detection and tracking system achieving 95% accuracy. Processed
 
 ## 💼 Experience
 
-**Quantum & Systems Engineer Intern** — DRDO, Ministry of Defence *(Apr 2025 – Sep 2025)*  
+**Quantum & Systems Engineer Intern** — DRDO, Ministry of Defence *(March 2025 – Sep 2025)*  
 Engineered GPU-accelerated quantum simulation pipelines, containerized compute environments, and distributed Python workflows handling 500+ parallel executions.
 
 **Cybersecurity Intern** — Academor *(Apr 2024 – Aug 2024)*  
