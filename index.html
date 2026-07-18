@@ -355,6 +355,27 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
     </div>
 
     <div class="project-item reveal">
+      <span class="project-name">Employee Management System (EMS)</span>
+      <p class="project-desc">A full-stack employee management system with role-based access control (RBAC), organizational hierarchy management, and secure authentication — built with Next.js, Express, and PostgreSQL, fully containerized with Docker.</p>
+      <ul class="project-bullets">
+        <li>Designed field-level RBAC enforcement — not just route-level access control — blocking unauthorized writes to sensitive fields (e.g.
+         salary) based on role, backed by a Jest/Supertest suite covering authorization edge cases.</li>
+        <li>Implemented a self-referencing employee-manager hierarchy with cycle detection to prevent circular reporting chains, a data-integrity
+         problem most CRUD systems don't handle correctly; verified with dedicated integration tests</li>
+        <li>Set up GitHub Actions CI running the full test suite against a live PostgreSQL service container on every push; deployed live — Vercel
+        (frontend) + Render (backend).</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">PostgreSQL</span>
+        <span class="tag">JWT</span><span class="tag">RBAC</span><span class="tag">JEST</span>
+        <span class="tag">Supertest</span><span class="tag">Github Actions</span>
+      </div>
+      <div style="margin-top: 0.8rem;">
+        <a href="https://github.com/Yashhh0602/AI-Dungeon-Master" target="_blank" class="btn btn-outline" style="font-size:12px; padding: 6px 14px;">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-item reveal">
       <span class="project-name">NoFeeSwap MEV Suite</span>
       <p class="project-desc">Full-stack Web3 DeFi application on the NoFeeSwap DEX protocol with on-chain pool initialization, liquidity management, and MEV sandwich attack tooling.</p>
       <ul class="project-bullets">
@@ -368,6 +389,24 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
         <span class="tag">Foundry</span><span class="tag">Anvil</span>
       </div>
     </div>
+
+      <div class="project-item reveal">
+      <span class="project-name">Codevector</span>
+      <p class="project-desc">Browse 200,000 products newest-first, filter by category, paginate without missing or repeating anything, even when new data arrives.</p>
+      <ul class="project-bullets">
+        <li>Built a FastAPI backend with cursor-based keyset pagination over a 200k+ row PostgreSQL dataset (Neon), using dynamic WHERE clause construction and a composite index for consistent query performance at scale.</li>
+        <li>Deployed live on Render with opaque cursor tokens, demonstrating production-style API design over large datasets.</li>
+      </ul>
+      <div class="project-stack">
+        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Neon</span><span class="tag">Render</span><span class="tag">Cursor Pagination</span>
+        <span class="tag">RestAPis</span>
+      </div>
+      <div style="margin-top: 0.8rem;">
+        <a href="https://github.com/Yashhh0602/AI-Dungeon-Master" target="_blank" class="btn btn-outline" style="font-size:12px; padding: 6px 14px;">GitHub →</a>
+      </div>
+    </div>
+
 
     <div class="project-item reveal">
   <span class="project-name">BurnTrack</span>
@@ -392,7 +431,7 @@ footer { padding: 2rem; text-align: center; font-family: var(--mono); font-size:
       <p class="project-desc">A full-stack Learning Management System built with the MERN stack. Users can browse video modules, track completion progress, and resume videos from where they left off.</p>
       <ul class="project-bullets">
         <li>Optimistic UI with rollback — UI updates instantly on "Mark as Complete", reverts silently if API fails. No loading spinners, smooth UX.</li>
-        <li>Video resume state — exact timestamp saved on pause, restored when you revisit the module. Both bonus features implemented.</li>
+        <li>Video resume state — exact timestamp saved on pause, restored when you revisit the module. Both bonus features are implemented.</li>
         <li>Clean separation of concerns — controllers, routes, models all separate. Context API for shared state, 3 MongoDB collections with proper relationships.</li>
       </ul>
       <div class="project-stack">
