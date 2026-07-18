@@ -1,5 +1,7 @@
 # Hi, I'm Yashvardhan 👋
-**Software Engineer** focused on distributed systems, GenAI, Web3, and applied ML.  
+**SBackend engineer with production experience building containerized Python services, async APIs, and AI-powered systems using vector search
+and semantic retrieval. Focused on writing defensible, tested code — from data-integrity logic (field-level authorization) to security fundamentals
+(hashing, tamper detection). 
 Ex intern at **DRDO, Ministry of Defence** building GPU-accelerated quantum simulation pipelines.  
 Graduate B.Tech CSE @ **Manipal Institute of Technology, Bengaluru** (2026).
 
