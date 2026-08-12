@@ -36,7 +36,7 @@ Graduate B.Tech CSE @ **Manipal Institute of Technology, Bengaluru** (2026).
 `PostgreSQL` `MySQL` `MongoDB` `Redis` `SQLite`
 
 **Cloud & DevOps**
-`AWS` `GCP` `Azure` `Docker` `Kubernetes` `CI/CD` `GitHub Actions` `CUDA-Q`
+`AWS` `Docker` `Kubernetes` `CI/CD` `GitHub Actions` `CUDA-Q`
 
 **Cybersecurity**
 `Wireshark` `Scapy` `Kali Linux` `OWASP` `Snort` `Metasploit`
